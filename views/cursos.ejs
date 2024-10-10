@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerenciar Cursos</title>
+</head>
+<body>
+    <h1>Cursos</h1>
+    <form action="/cursos" method="POST">
+        <input type="text" name="nome" placeholder="Nome do Curso" required>
+        <input type="text" name="descricao" placeholder="Descrição">
+        <input type="number" name="duracao" placeholder="Duração (horas)" required>
+        <input type="number" step="0.01" name="preco" placeholder="Preço (R$)" required>
+        <button type="submit">Adicionar Curso</button>
+    </form>
+
+    <ul>
+        <% cursos.forEach(curso => { %>
+            <li>
+                <strong><%= curso.nome %></strong> - <%= curso.duracao %> horas - R$<%= curso.preco %>
+                <form action="/cursos/delete/<%= curso.nome %>" method="POST" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <a href="/">Voltar ao Início</a>
+</body>
+</html>
